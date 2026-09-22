@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Job Board</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-6 text-center">
+        <h1 class="text-3xl font-bold">Dynamic Job Board</h1>
+        <p class="mt-2">Find your dream job</p>
+    </header>
+
+    <!-- Search Section -->
+    <div class="p-6 max-w-5xl mx-auto">
+
+        <div class="bg-white p-4 rounded-lg shadow mb-6">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search job title..."
+                class="w-full p-3 border rounded-lg"
+                onkeyup="searchJobs()"
+            >
+        </div>
+
+        <!-- Job List -->
+        <div id="jobList" class="grid md:grid-cols-2 gap-5">
+
+            <!-- Job 1 -->
+            <div class="job-card bg-white p-5 rounded-lg shadow"
+                 data-title="Web Developer">
+                <h2 class="text-xl font-bold text-blue-600">
+                    Web Developer
+                </h2>
+                <p class="mt-2">Company: Tech Solutions</p>
+                <p>Location: Nagpur</p>
+                <p>Salary: ₹25,000/month</p>
+                <button
+                    onclick="applyJob('Web Developer')"
+                    class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">
+                    Apply Now
+                </button>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="job-card bg-white p-5 rounded-lg shadow"
+                 data-title="Software Engineer">
+                <h2 class="text-xl font-bold text-green-600">
+                    Software Engineer
+                </h2>
+                <p class="mt-2">Company: ABC Technologies</p>
+                <p>Location: Pune</p>
+                <p>Salary: ₹35,000/month</p>
+                <button
+                    onclick="applyJob('Software Engineer')"
+                    class="mt-4 bg-green-600 text-white px-4 py-2 rounded">
+                    Apply Now
+                </button>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="job-card bg-white p-5 rounded-lg shadow"
+                 data-title="Electrical Engineer">
+                <h2 class="text-xl font-bold text-purple-600">
+                    Electrical Engineer
+                </h2>
+                <p class="mt-2">Company: PowerTech</p>
+                <p>Location: Nagpur</p>
+                <p>Salary: ₹30,000/month</p>
+                <button
+                    onclick="applyJob('Electrical Engineer')"
+                    class="mt-4 bg-purple-600 text-white px-4 py-2 rounded">
+                    Apply Now
+                </button>
+            </div>
+
+            <!-- Job 4 -->
+            <div class="job-card bg-white p-5 rounded-lg shadow"
+                 data-title="UI Designer">
+                <h2 class="text-xl font-bold text-orange-600">
+                    UI Designer
+                </h2>
+                <p class="mt-2">Company: Creative Studio</p>
+                <p>Location: Mumbai</p>
+                <p>Salary: ₹28,000/month</p>
+                <button
+                    onclick="applyJob('UI Designer')"
+                    class="mt-4 bg-orange-600 text-white px-4 py-2 rounded">
+                    Apply Now
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Message -->
+        <p id="message" class="text-center text-green-600 font-bold mt-6"></p>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        function searchJobs() {
+
+            let input = document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+            let jobs = document.querySelectorAll(".job-card");
+
+            jobs.forEach(function(job) {
+
+                let title = job
+                    .getAttribute("data-title")
+                    .toLowerCase();
+
+                if (title.includes(input)) {
+                    job.style.display = "block";
+                } else {
+                    job.style.display = "none";
+                }
+
+            });
+        }
+
+        function applyJob(jobName) {
+
+            document.getElementById("message").innerText =
+                "You have applied for " + jobName + "!";
+
+        }
+
+    </script>
+
+</body>
+</html>
